@@ -1,0 +1,29 @@
+@keyframes loading-frames {
+    to {
+        opacity: 1;
+    }
+}
+
+.progressbarContainer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    place-self: center;
+    margin-top: 50px;
+
+    .singleBar {
+        display: flex;
+        border-radius: 16px;
+        width: 15px;
+        animation: loading-frames ease-in-out;
+        opacity: 0;
+        animation-iteration-count: infinite;
+        background: linear-gradient(
+            107.52deg,
+            #bce8ff 3.56%,
+            rgba(218, 244, 255, 0.94) 50.39%,
+            rgba(191, 216, 255, 0.895) 79.14%,
+            rgba(164, 188, 255, 0.85) 100%
+        );
+    }
+}
