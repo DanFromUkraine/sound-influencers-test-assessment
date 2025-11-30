@@ -1,37 +1,15 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
-$refraction: 8px;
-$depth: 20px;
-$dispersion: 2px;
-$frost: 4px;
-
-.glassEffectContainer {
-    position: relative;
-    p {
-        font-size: 25px;
-        line-height: 35px;
-    }
-    .glassLogo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transform: translate(-50%, -50%);
-        font-family: "Montserrat", sans-serif;
-        font-weight: 700;
-        /* border: 1.6px solid rgba(255, 255, 255, 0.78); */
-/* background: rgba(255, 255, 255, 0.00001); */
-/* backdrop-filter: blur($frost) saturate(120%) contrast(105%); */
-/* border-radius: 8px;
-        padding: 12.5px 18px; */
-/* box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.2); */
-/* z-index: 10; */
-/* }
-}  */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 .glass-canvas {
     width: 100%;
     height: 100%;
+}
+
+.glassLogo {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    padding: 8px 18px;
 }
