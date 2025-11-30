@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 $refraction: 8px;
 $depth: 20px;
@@ -21,12 +21,17 @@ $frost: 4px;
         transform: translate(-50%, -50%);
         font-family: "Montserrat", sans-serif;
         font-weight: 700;
-        border: 1.6px solid rgba(255, 255, 255, 0.78);
-        background: rgba(255, 255, 255, 0.00001)qu
-        backdrop-filter: blur($frost) saturate(120%) contrast(105%);
-        border-radius: 8px;
-        padding: 12.5px 18px;
-        box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.2);
-        z-index: 10;
-    }
+        /* border: 1.6px solid rgba(255, 255, 255, 0.78); */
+/* background: rgba(255, 255, 255, 0.00001); */
+/* backdrop-filter: blur($frost) saturate(120%) contrast(105%); */
+/* border-radius: 8px;
+        padding: 12.5px 18px; */
+/* box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.2); */
+/* z-index: 10; */
+/* }
+}  */
+
+.glass-canvas {
+    width: 100%;
+    height: 100%;
 }

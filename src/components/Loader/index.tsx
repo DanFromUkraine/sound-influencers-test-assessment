@@ -10,8 +10,8 @@ export default function Loader({
     return (
         isVisible && (
             <section
-                title="progress bar"
                 role="progressbar"
+                aria-label="progress bar"
                 className="progressbarContainer"
             >
                 {LOADER_STRUCTURE.map((h, i, list) => (
