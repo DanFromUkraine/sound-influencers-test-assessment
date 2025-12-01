@@ -1,4 +1,4 @@
-import GlassEffect from "./components/GlassEffect2";
+import GlassEffect from "./components/GlassEffect";
 import Loader from "./components/Loader";
 import "./app.scss";
 

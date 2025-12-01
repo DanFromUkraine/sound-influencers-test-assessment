@@ -20,9 +20,6 @@ export default function GlassElement({
     blur = 2,
 }: GlassElementProps) {
     const style: CSSProperties = {
-        position: "absolute",
-        top: 0,
-        left: 0,
         height: `${height}px`,
         width: `${width}px`,
         borderRadius: `${radius}px`,
