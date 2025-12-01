@@ -1,0 +1,10 @@
+export default function BackgroundText() {
+    return (
+        <p>
+            TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+            TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+            TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+            TEST TEST TEST TEST TEST TEST
+        </p>
+    );
+}

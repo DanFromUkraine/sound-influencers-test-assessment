@@ -1,16 +1,16 @@
 import {
+    Environment,
     Html,
     MeshTransmissionMaterial,
     RoundedBox,
     Text,
-    Environment,
 } from "@react-three/drei";
 import { Canvas, useThree, type Camera } from "@react-three/fiber";
+import { useEffect, useState } from "react";
 import * as THREE from "three";
+import svgLogo from "./logo.svg";
 import regularFont from "./Sahitya-Regular.ttf";
 import "./styles.scss";
-import svgLogo from "./logo.svg";
-import { useLayoutEffect, useRef, useState } from "react";
 
 export default function GlassEffect() {
     return (
@@ -21,16 +21,8 @@ export default function GlassEffect() {
             style={{ height: "100%", width: "100%" }}
         >
             <color attach="background" args={["#ffffff"]} />
-
-            {/* Додай Environment для коректного освітлення */}
-            <Environment preset="studio" environmentIntensity={1.5} />
-
-            <ambientLight intensity={1.5} color={0xffffff} />
-            <directionalLight
-                position={[10, 10, 10]}
-                intensity={1}
-                color={0xffffff}
-            />
+            {/*<Environment preset="studio" environmentIntensity={0.8} />*/}
+            <ambientLight intensity={0.8} color={0xffffff} />
 
             <BackgroundText />
             <Logo />
@@ -58,47 +50,86 @@ function BackgroundText() {
             TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
             TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
             TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
-            TEST TEST TEST TEST TEST TEST TEST
+            TEST TEST TEST TEST TEST TEST
         </Text>
     );
 }
 
 interface RectInfo {
-    startX: number;
-    startY: number;
     width: number;
     height: number;
 }
 
 function Logo() {
-    const htmlSectionRef = useRef<HTMLDivElement>(null);
+    const { camera, size } = useThree();
+    const [rectInfo, setRectInfo] = useState<RectInfo | null>(null);
 
-    useLayoutEffect(() => {
-        if (!htmlSectionRef.current) return;
-    });
+    useEffect(() => {
+        const findElement = () => {
+            const el = document.querySelector(".glassLogo") as HTMLDivElement;
+            if (el && el.offsetWidth > 0 && el.offsetHeight > 0) {
+                setRectInfo({
+                    width: el.offsetWidth,
+                    height: el.offsetHeight,
+                });
+                return true;
+            }
+            return false;
+        };
+
+        if (!findElement()) {
+            const timer = setInterval(() => {
+                if (findElement()) {
+                    clearInterval(timer);
+                }
+            }, 50);
+
+            return () => clearInterval(timer);
+        }
+    }, []);
 
     return (
         <>
-            <mesh position={[0, 0, 2]}>
-                <RoundedBox args={[4, 2, 0.5]} radius={0.08} smoothness={4}>
-                    <MeshTransmissionMaterial
-                        transmission={0.85}
-                        thickness={0.2}
-                        ior={1.2}
-                        samples={64}
-                        roughness={0.04}
-                        anisotropicBlur={0.2}
-                        attenuationColor="#ffffff"
-                        attenuationDistance={2}
-                        depthWrite={true}
-                        depthTest={true}
-                        toneMapped={false}
-                        chromaticAberration={0.5}
-                    />
-                </RoundedBox>
-            </mesh>
+            {rectInfo !== null && (
+                <mesh position={[0, 0, 2]}>
+                    <RoundedBox
+                        args={[
+                            pixelsToWorld(
+                                camera,
+                                rectInfo.width,
+                                8,
+                                size.height,
+                            ),
+                            pixelsToWorld(
+                                camera,
+                                rectInfo.height,
+                                8,
+                                size.height,
+                            ),
+                            0.2,
+                        ]}
+                        radius={pixelsToWorld(camera, 8, 8, size.height)}
+                        smoothness={4}
+                    >
+                        <MeshTransmissionMaterial
+                            samples={64}
+                            anisotropicBlur={0.3}
+                            attenuationColor="#ffffff"
+                            attenuationDistance={0.2}
+                            // depthWrite={true}
+                            depthTest={true}
+                            toneMapped={false}
+                            transmission={1}
+                            thickness={0.2}
+                            roughness={0.04}
+                            ior={1.8}
+                            chromaticAberration={0.5}
+                        />
+                    </RoundedBox>
+                </mesh>
+            )}
             <Html center>
-                <section className="glassLogo" ref={htmlSectionRef}>
+                <section className="glassLogo">
                     <img src={svgLogo} alt="logo" />
                     <span>SoundInfluencers</span>
                 </section>
