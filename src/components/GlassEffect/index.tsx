@@ -1,16 +1,12 @@
+import BackgroundText from "./BackgroundText";
 import "./styles.scss";
 import GlassLogo from "./GlassLogo";
 
-export default function GlassEffect() {
+export default function GlassEffectContainer() {
     return (
         <section className="glassEffectContainer">
+            <BackgroundText />
             <GlassLogo />
-            <p>
-                TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
-                TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
-                TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
-                TEST TEST TEST TEST TEST TEST TEST
-            </p>
         </section>
     );
 }
