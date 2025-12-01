@@ -1,12 +1,10 @@
-import "./styles.scss";
-import FilterInitializer from "./FilterInitializer";
-import GlassLogo from "./GlassLogo";
 import BackgroundText from "./BackgroundText";
+import "./styles.scss";
+import GlassLogo from "./GlassLogo";
 
 export default function GlassEffectContainer() {
     return (
         <section className="glassEffectContainer">
-            <FilterInitializer />
             <BackgroundText />
             <GlassLogo />
         </section>
