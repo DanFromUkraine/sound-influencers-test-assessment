@@ -9,9 +9,9 @@ export default function Loader({
 }: LoaderParameters) {
     return (
         isVisible && (
-            <section
+            <div
                 role="progressbar"
-                aria-label="progress bar"
+                aria-label="Loading..."
                 className="progressbarContainer"
             >
                 {LOADER_STRUCTURE.map((h, i, list) => (
@@ -24,7 +24,7 @@ export default function Loader({
                         )}
                     />
                 ))}
-            </section>
+            </div>
         )
     );
 }

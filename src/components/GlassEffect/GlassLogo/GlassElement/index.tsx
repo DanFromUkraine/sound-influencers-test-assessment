@@ -5,7 +5,7 @@ import {
 } from "./getDisplacementFilter";
 
 type GlassElementProps = DisplacementOptions & {
-    children?: ReactNode | undefined;
+    children?: ReactNode;
     blur?: number;
 };
 
