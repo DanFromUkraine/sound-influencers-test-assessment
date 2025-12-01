@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GlassElement from "./GlassElement";
 import svgLogo from "./logo.svg";
 
@@ -11,13 +11,24 @@ export default function GlassLogo() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [size, setSize] = useState<RectSize | null>(null);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const el = containerRef.current;
         if (!el) return;
-        setSize({
-            width: el.clientWidth,
-            height: el.clientHeight,
+
+        const observer = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+                setSize({
+                    width: entry.contentRect.width,
+                    height: entry.contentRect.height,
+                });
+            }
         });
+
+        observer.observe(el);
+
+        return () => {
+            observer.disconnect();
+        };
     }, []);
 
     return (
@@ -25,7 +36,7 @@ export default function GlassLogo() {
             {size !== null && (
                 <GlassElement
                     width={size.width}
-                    height={size.height + 1}
+                    height={size.height}
                     radius={8}
                     depth={1}
                     blur={2.5}
